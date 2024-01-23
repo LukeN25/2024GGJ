@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     public bool grounded;
 
-    public Animator animator;
+    //public Animator animator;
 
     private void Awake()
     {
@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && grounded)
             Jump();
 
+        /*
         if (body.velocity.magnitude != 0f && grounded)
         {
             animator.Play("Run");
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.Play("Idle");
         }
+        */
     }
 
     private void Jump()
@@ -46,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Red" || collision.gameObject.tag == "Yellow" || collision.gameObject.tag == "Green" || collision.gameObject.tag == "Blue")
+        if (collision.gameObject.tag == "Ground")
         {
             grounded = true;
         }
