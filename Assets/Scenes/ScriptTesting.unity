@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 474358035}
   - component: {fileID: 474358034}
   - component: {fileID: 474358038}
+  - component: {fileID: 474358039}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -424,6 +425,19 @@ MonoBehaviour:
   speed: 5
   jumpheight: 5
   grounded: 0
+--- !u!114 &474358039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474358033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee3228460a82574eb1b2bcc7c2ab4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 474358033}
 --- !u!1 &681352651
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +718,7 @@ GameObject:
   - component: {fileID: 1952173155}
   m_Layer: 0
   m_Name: Spike
-  m_TagString: Untagged
+  m_TagString: Death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
