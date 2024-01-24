@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     public bool grounded;
 
-    //public Animator animator;
+    public Animator animator;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && grounded)
             Jump();
 
-        /*
+        
         if (body.velocity.magnitude != 0f && grounded)
         {
             animator.Play("Run");
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.Play("Idle");
         }
-        */
+        
     }
 
     private void Jump()
