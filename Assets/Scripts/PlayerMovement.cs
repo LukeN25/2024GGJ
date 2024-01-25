@@ -25,13 +25,21 @@ public class PlayerMovement : MonoBehaviour
             Jump();
 
 
-        if (body.velocity.magnitude != 0f && grounded)
+        if (body.velocity.magnitude != 0f && grounded && Input.GetKey("a"))
+        {
+            animator.Play("Left");
+        }
+        else if (body.velocity.magnitude != 0f && grounded && Input.GetKey("d"))
         {
             animator.Play("Run");
         }
-        else if (body.velocity.magnitude != 0f && !grounded)
+        else if (body.velocity.magnitude != 0f && !grounded && Input.GetKey("d"))
         {
             animator.Play("Jump");
+        }
+        else if (body.velocity.magnitude != 0f && !grounded && Input.GetKey("a"))
+        {
+            animator.Play("JumpLeft");
         }
         else
         {
