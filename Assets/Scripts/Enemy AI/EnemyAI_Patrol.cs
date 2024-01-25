@@ -1,11 +1,15 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
-public class EnemyAI_FollowPlayer : MonoBehaviour
+public class EnemyAI_Patrol : MonoBehaviour
 {
+    public Transform pointA;
+    public Transform pointB;
+    public float distanceToTarget;
     public Transform target;
+    private Transform currentLocation;
 
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
@@ -20,21 +24,34 @@ public class EnemyAI_FollowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        target = pointA;
+
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        currentLocation = GetComponent<Transform>();
 
         InvokeRepeating("UpdatePath", 0f, .5f);
     }
 
     void UpdatePath()
     {
+        Debug.Log(Vector3.Distance(target.transform.position, currentLocation.transform.position));
+        if(Vector3.Distance(target.transform.position, currentLocation.transform.position) < distanceToTarget)
+        {
+            if (target == pointA) { target = pointB; }
+            else if (target == pointB) { target = pointA; }
+        }
+
+
         if (seeker.IsDone())
+        {
             seeker.StartPath(rb.position, target.position, OnPathComplete);
+        }
     }
-    
+
     void OnPathComplete(Path p)
     {
-         if(!p.error)
+        if (!p.error)
         {
             path = p;
             currentWaypoint = 0;
@@ -46,13 +63,14 @@ public class EnemyAI_FollowPlayer : MonoBehaviour
         if (path == null)
             return;
 
-        if(currentWaypoint >= path.vectorPath.Count)
+        if (currentWaypoint >= path.vectorPath.Count)
         {
             reachedEndOfPath = true;
             return;
-        } else
+        }
+        else
         {
-            reachedEndOfPath= false;
+            reachedEndOfPath = false;
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
@@ -62,7 +80,7 @@ public class EnemyAI_FollowPlayer : MonoBehaviour
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
-        if(distance < nextWaypointDistance)
+        if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
         }
