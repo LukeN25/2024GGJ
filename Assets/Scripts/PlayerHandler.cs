@@ -5,22 +5,32 @@ using UnityEngine;
 public class PlayerHandler : MonoBehaviour
 {
     public GameObject playerObject;
+    public Transform LevelStart;
+    private Animator animator;
 
-    void Start()
+    private void Start()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        animator = GetComponent<Animator>();
     }
 
     void OnTriggerEnter2D(Collider2D col) 
     {
         if(col.tag == "Death")
         {
-            Destroy(playerObject);
+            Die();
         }
+    }
+
+    public void Die()
+    {
+        GetComponent<PlayerMovement>().enabled = false;
+        animator.Play("death");
+        Invoke("ResetPosition", 2f);
+    }
+
+    private void ResetPosition()
+    {
+        GetComponent<PlayerMovement>().enabled = true;
+        gameObject.transform.position = LevelStart.position;
     }
 }

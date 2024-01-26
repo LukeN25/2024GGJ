@@ -28,8 +28,12 @@ public class Enemy : MonoBehaviour
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             IsShrinking = true;
-            //Invoke("KillEnemy", 1f);
+            Invoke("KillEnemy", 1f);
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * launchForce, ForceMode2D.Impulse);
+        }
+        else if(collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerHandler>().Die();
         }
     }
 
