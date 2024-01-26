@@ -35,7 +35,6 @@ public class EnemyAI_Patrol : MonoBehaviour
 
     void UpdatePath()
     {
-        Debug.Log(Vector3.Distance(target.transform.position, currentLocation.transform.position));
         if(Vector3.Distance(target.transform.position, currentLocation.transform.position) < distanceToTarget)
         {
             if (target == pointA) { target = pointB; }
