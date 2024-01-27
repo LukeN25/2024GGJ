@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpheight;
+    [SerializeField] public float speed;
+    [SerializeField] public float jumpheight;
     private Rigidbody2D body;
     public bool grounded;
 
