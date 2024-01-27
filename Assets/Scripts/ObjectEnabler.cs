@@ -7,8 +7,11 @@ public class ObjectEnabler : MonoBehaviour
     public GameObject objectToEnable;
 
     // Update is called once per frame
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        objectToEnable.SetActive(true);   
+        if(col.tag == "Player")
+        {
+            objectToEnable.SetActive(true);
+        }  
     }
 }
