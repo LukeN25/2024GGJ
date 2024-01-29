@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float launchForce;
     private Rigidbody2D rb;
     private bool IsShrinking = false;
+    public AudioSource audioSource;
 
     private void Update()
     {
@@ -30,6 +31,7 @@ public class Enemy : MonoBehaviour
             IsShrinking = true;
             Invoke("KillEnemy", 1f);
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * launchForce, ForceMode2D.Impulse);
+            audioSource.Play();
         }
         else if(collision.gameObject.tag == "Player")
         {
